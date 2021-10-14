@@ -68,14 +68,8 @@ class PinsController extends AbstractController
     public function edit(Pin $pin, Request $request, EntityManagerInterface $em): Response
     {
 
-<<<<<<< HEAD
         $form = $this->createForm(PinType::class, $pin);    
-=======
-       $form = $this->createForm(PinType::class, $pin, [
-           'method' => 'PUT'
-       ]);     
->>>>>>> 4810626db0c5b76a4db8897b951d7c8a1067d769
-
+    
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) { 
