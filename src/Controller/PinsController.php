@@ -68,7 +68,9 @@ class PinsController extends AbstractController
     public function edit(Pin $pin, Request $request, EntityManagerInterface $em): Response
     {
 
-        $form = $this->createForm(PinType::class, $pin);    
+        $form = $this->createForm(PinType::class, $pin);
+        
+        //aici baga el al 3-lea param in create form method put, dar nu merge; TODO sa fac cu form in edit show
     
         $form->handleRequest($request);
 
@@ -83,4 +85,14 @@ class PinsController extends AbstractController
           'form' => $form->createView()
       ]);
 }
+
+    /**
+     * @Route("/pins/{id<[0-9]+>}/delete", name="app_pins_delete", methods={"GET"})
+     */
+    public function delete(Pin $pin, EntityManagerInterface $em): Response {
+        $em->remove($pin);
+        $em->flush();
+
+        return $this->redirectToRoute('app_home');
+    }
 }
