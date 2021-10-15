@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+    {# representation of all the fields next line #}
+    {{ form_widget(form) }} 
+   
+
+    <input type="submit" value="{{submitButtonText ?? 'Create Pin' }}" formnovalidate>
+  {{ form_end(form) }}
