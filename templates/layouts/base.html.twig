@@ -7,6 +7,24 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
+
+            <style>
+              .alert {
+                  padding: 10px;
+                  color: white;
+                  text-align: center;
+              }
+
+              .alert-succes {
+                  background-color: green;
+              }
+              .alert-error {
+                  background-color: red;
+              }
+              .alert-info {
+                  background-color: blue;
+              }
+            </style>
         {% endblock %}
 
         {% block javascripts %}
@@ -14,6 +32,8 @@
         {% endblock %}
     </head>
     <body>
+        {{include('layouts/partials/flash_messages.html.twig')}}
+    
         <nav>
             <ul>
                 <li><a href="{{ path('app_home') }}">Home</a></li>

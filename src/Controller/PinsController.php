@@ -40,10 +40,14 @@ class PinsController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-        // is recommended to use dependance injection in function arguments eg:line 31
+        // dd($form->getData());
+        // if data-class is set in PinType.php(not null) ->returns object ?? returns array   
+        // is recommended to use dependance injection in function arguments eg:line 35
         // $em = $this->getDoctrine()->getManager(); 
         $em->persist($pin);
         $em->flush();
+
+        $this->addFlash('succes', 'Pin  succesfully added');
 
         return $this->redirectToRoute('app_home');
 
@@ -77,6 +81,8 @@ class PinsController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) { 
         $em->flush();
 
+         $this->addFlash('succes', 'Pin succesfully edited ');
+
         return $this->redirectToRoute('app_home');
             
     }
@@ -94,6 +100,8 @@ class PinsController extends AbstractController
         if($this->isCsrfTokenValid('pin_deletion_' . $pin->getId(), $request->request->get('csrf_token') )) { 
             $em->remove($pin);
             $em->flush();
+
+             $this->addFlash('info', 'Pin succesfully deleted');
         }
 
         return $this->redirectToRoute('app_home');
