@@ -2,6 +2,7 @@
     {# representation of all the fields next line #}
     {{ form_widget(form) }} 
    
-
-    <input type="submit" class="btn btn-primary btn-block" value="{{submitButtonText ?? 'Create Pin' }}" formnovalidate>
+  <div class="d-grid gap-2 d-block">
+    <input type="submit" class="btn btn-primary mt-3" value="{{submitButtonText ?? 'Create Pin' }}" formnovalidate>
+   </div> 
   {{ form_end(form) }}
