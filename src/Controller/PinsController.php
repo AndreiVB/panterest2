@@ -53,6 +53,8 @@ class PinsController extends AbstractController
 
         }
         return $this->render('pins/create.html.twig', [
+            //bagat de mine urm linie
+            'pin' => $pin,
             'form' => $form->createView()
         ]);
     }

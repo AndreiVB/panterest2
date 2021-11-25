@@ -25,3 +25,7 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+###> custom env vars - ignoring uploads ###
+/public/uploads
+###< end custom env vars - ignoring uploads ###
