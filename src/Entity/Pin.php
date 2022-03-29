@@ -54,7 +54,7 @@ class Pin
      /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
-     * @Vich\UploadableField(mapping="pin_image", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="pin_image", fileNameProperty="imageName", size="imageSize")
      * @Assert\Image(maxSize="8M")
      * 
      * @var File|null
@@ -65,6 +65,14 @@ class Pin
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageName;
+
+    //added temporary imageSize, may be removed after
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var int|null
+     */
+    private $imageSize;
 
     public function getId(): ?int
     {
@@ -161,5 +169,16 @@ class Pin
         $this->imageName = $imageName;
 
         return $this;
+    }
+    //added temporary, may be removed after
+
+     public function setImageSize(?int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
+    }
+
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
     }
 }
