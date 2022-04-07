@@ -35,3 +35,10 @@ body {
 		@extend .img-thumbnail;
 	}
 }
+
+.pin img {
+	transition: transform 0.5ms ease-out;
+	&:hover {
+		transform: scale(1.075);
+	}
+}
