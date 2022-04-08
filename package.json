@@ -9,7 +9,7 @@
 		"jquery": "^3.6.0",
 		"regenerator-runtime": "^0.13.2",
 		"sass": "^1.43.2",
-		"sass-loader": "^10.0.0",
+		"sass-loader": "^10.2.1",
 		"stimulus": "^2.0.0",
 		"webpack-notifier": "^1.6.0"
 	},
@@ -21,5 +21,7 @@
 		"watch": "encore dev --watch",
 		"build": "encore production --progress"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"node-sass": "^7.0.1"
+	}
 }

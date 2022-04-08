@@ -12,17 +12,17 @@
         </a>   
       </div>
 
-      <h2 class="pt-3 pl-3 h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary">{{ pin.title }}</a></h2>
+      <h2 class="pt-3 ps-3 h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary">{{ pin.title }}</a></h2>
 
-      <p class="pb-3 pl-3 text-muted">
+      <p class="pb-3 ps-3 text-muted">
           <small>
           Submitted <time datetime="{{ pin.createdAt|date('Y-m-d H:i:s')}}"> {{pin.createdAt|ago}}</time>[owner name]
           </small>
       </p>
 
-      <p class="pl-3 pb-3">{{pin.description}}</p>
+      <p class="ps-3 pb-3">{{pin.description}}</p>
 
-      <div class="pl-3 pb-3">
+      <div class="ps-3 pb-3">
           <a href="{{ path('app_pins_edit', {id: pin.id}) }}" class="btn btn-light">Edit</a>
           <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-pin-delete-form').submit();" class="btn btn-light">Delete</a> 
 

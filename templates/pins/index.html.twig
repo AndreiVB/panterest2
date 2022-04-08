@@ -10,13 +10,13 @@
     {% for pin in row %} 
     <div class="col-md-4">
       <article class="pin bg-white rounded shadow">
-      <div class="mw-100 overflow-hidden">
+      <div class="mw-100 overflow-hidden hover-zoom">
       <a href="{{ path('app_pins_show', {id: pin.id}) }}">
         <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/image/placeholder.jpg')) | imagine_filter('square_thumbnail_medium') }}" alt="{{ pin.title}}" class="w-100 rounded-top">
       </a>   
       </div>
-        <h2 class="pt-3 pl-3 h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary">{{ pin.title }}</a></h2>
-        <p class="pb-3 pl-3 text-muted"><small>Submitted [owner name]</small></p>
+        <h2 class="pt-3 ps-3 h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary">{{ pin.title }}</a></h2>
+        <p class="pb-3 ps-3 text-muted"><small>Submitted [owner name]</small></p>
       </article>
     </div>
     {% endfor %}
