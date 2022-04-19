@@ -6,13 +6,13 @@
 <div class="row">
   <div class="col-md-6 mx-auto">
     <article class="pin bg-white rounded shadow">
-      <div class="mw-100 overflow-hidden">
+      <div class="mw-100 rounded-top overflow-hidden">
         <a href="{{ path('app_pins_show', {id: pin.id}) }}">
-          <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/image/placeholder.jpg')) | imagine_filter('square_thumbnail_medium') }}" alt="{{ pin.title}}" class="w-100 rounded-top">
+          <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/image/placeholder.jpg')) | imagine_filter('square_thumbnail_small') }}" alt="{{ pin.title}}" class="w-100">
         </a>   
       </div>
 
-      <h2 class="pt-3 ps-3 h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary">{{ pin.title }}</a></h2>
+      <h1 class="pt-3 ps-3 h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary">{{ pin.title }}</a></h1>
 
       <p class="pb-3 ps-3 text-muted">
           <small>
