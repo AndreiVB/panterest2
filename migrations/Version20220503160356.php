@@ -14,7 +14,7 @@ final class Version20220503160356 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'add relation to entities pin to user';
     }
 
     public function up(Schema $schema): void
