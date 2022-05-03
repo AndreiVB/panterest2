@@ -16,7 +16,8 @@
       </a>   
       </div>
         <h2 class="pt-3 ps-3 h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary">{{ pin.title }}</a></h2>
-        <p class="pb-3 ps-3 text-muted"><small>Submitted [owner name]</small></p>
+        <p class="pb-3 ps-3 text-muted"><small>Submitted by {{pin.user.fullName}}</small></p>
+         <p class="ps-3 pb-3">{{pin.description}}</p>
       </article>
     </div>
     {% endfor %}
