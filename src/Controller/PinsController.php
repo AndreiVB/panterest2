@@ -43,7 +43,8 @@ class PinsController extends AbstractController
         // dd($form->getData());
         // if data-class is set in PinType.php(not null) ->returns object ?? returns array   
         // is recommended to use dependance injection in function arguments eg:line 35
-        // $em = $this->getDoctrine()->getManager(); 
+        // $em = $this->getDoctrine()->getManager();
+        $pin->setUser($this->getUser()); 
         $em->persist($pin);
         $em->flush();
 

@@ -46,8 +46,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        
         // do not know why is underlined, it works; method exists in AbstractController and i have acces. i can also inject in constuctor if needed and use $this->session()
-        $request->getSession()->getFlashBag()->add('succes', 'Logged in succesfully');
+        $request->getSession()->getFlashBag()->add('succes', 'Hi ' . $token->getUser()->getFullName());
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
