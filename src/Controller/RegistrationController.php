@@ -18,6 +18,11 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface, EntityManagerInterface $em): Response
     {
+        if ($this->getUser()) {
+            $this->addFlash('error', 'You are already logged in');
+            return $this->redirectToRoute('app_home');
+        }
+        
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
