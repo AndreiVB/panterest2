@@ -7,12 +7,17 @@
         <div class="col-md-6 mx-auto text-center">
             <h1 class="my-4">Account</h1>
             
-                <img src="{{ asset('build/image/profile_img.jpg')}}" class="rounded mx-auto d-block w-25" alt="User profile image"/>
+            <img src="{{ asset('build/image/profile_img.jpg')}}" class="rounded-circle mx-auto d-block w-25" alt="User profile image"/>
+
+            <p class="lead mt-3">{{ app.user.email}}</p>
+
+             <hr>
+
+            <p class ="text-muted mt-3">🕑<small>Registered at {{app.user.createdAt|date('d/m/Y')}}<small/></p>       
             
-            <p class="lead mt-5">{{ app.user.email}}</p>
             <h2>{{ app.user.fullName}}</h2>
 
-            <p><a href="{{ path('app_account_edit') }}" class="text-decoration-none">Edit account</a> | <a href="#" class="text-decoration-none">Change password</a></p>
+            <p><a href="{{ path('app_account_edit') }}" class="text-decoration-none fs-6">Edit account</a> | <a href="{{ path('app_account_change_password') }}" class="text-decoration-none fs-6">Change password</a></p>
             
         </div>
     </div>
