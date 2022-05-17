@@ -1,0 +1,27 @@
+{% extends "layouts/base.html.twig" %} 
+
+{% block title %}Edit user account{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h1 class="text-center my-4">Update profile</h1>
+
+            {{form_start(form)}}
+                <div class="row">
+                    <div class="col-md-6"> 
+                        {{form_widget(form.firstName)}}
+                    </div>
+                    <div class="col-md-6"> 
+                        {{form_widget(form.lastName)}}
+                    </div>
+                </div>
+                {# display remaining fields of form #}
+                {{form_rest(form)}}
+                
+                <button type="submit" class="btn btn-primary btn-lg w-100">Apply changes</button> 
+            {{form_end(form)}}
+
+        </div>
+    </div>
+{% endblock %}
