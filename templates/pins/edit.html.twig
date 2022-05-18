@@ -8,10 +8,9 @@
 
 <div class="row">
     <div class="col-md-6 mx-auto">
-  {# <h1>{{ Edit pin ~ pin.id }}</h1> #}
-  <h1>{{ 'Edit pin ' ~ pin.id }}</h1>
+      <h1>{{ 'Edit pin ' ~ pin.id }}</h1>
 
-  {{ include('pins/_form.html.twig', {'submitButtonText': 'Edit Pin'}) }}
+      {{ include('pins/_form.html.twig', {'submitButtonText': 'Edit Pin'}) }}
     </div>
   </div>
 {% endblock %}

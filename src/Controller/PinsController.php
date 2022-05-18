@@ -9,16 +9,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PinsController extends AbstractController
 {
 
-    //if lot of $em use(optional), istead of injecting in every function
-    /* private $em;
-    public function __construct(EntityManagerInterface $em) {
-        $this->em = $em; 
-    } */
+    
     /**
      * @Route("/", name="app_home", methods="GET")
      */
@@ -31,24 +28,20 @@ class PinsController extends AbstractController
 
     /**
      * @Route("/pins/create", name="app_pins_create", methods="GET|POST")
+     * @Security("is_granted('ROLE_USER')")
      */
     // methods={"GET", "POST"} same as line 27
     public function create(Request $request, EntityManagerInterface $em): Response {
-        if(!$this->getUser()) {
-            $this->addFlash('error', 'You need to be logged id');
-            return $this->redirectToRoute('app_login');
-        }
         
+
         $pin = new Pin; 
         $form = $this->createForm(PinType::class, $pin);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-        // dd($form->getData());
+    
         // if data-class is set in PinType.php(not null) ->returns object ?? returns array   
-        // is recommended to use dependance injection in function arguments eg:line 35
-        // $em = $this->getDoctrine()->getManager();
         $pin->setUser($this->getUser()); 
         $em->persist($pin);
         $em->flush();
@@ -76,22 +69,12 @@ class PinsController extends AbstractController
 
     /**
      * @Route("/pins/{id<[0-9]+>}/edit", name="app_pins_edit", methods={"GET", "POST"})
+     * @Security("is_granted('PIN_MANAGE', pin)")
      */
     public function edit(Pin $pin, Request $request, EntityManagerInterface $em): Response
     {
-        if(!$this->getUser()) {
-            $this->addFlash('error', 'You need to be logged id');
-            return $this->redirectToRoute('app_login');
-        }
-        
-        if($pin->getUser() != $this->getUser()) {
-            $this->addFlash('error', 'Access denied');
-            return $this->redirectToRoute('app_home');
-        }
-        
+        //instead of security can also use @isGranted("PIN_MANAGE, subject="pin")
         $form = $this->createForm(PinType::class, $pin);
-        
-        //aici baga el al 3-lea param in create form method put, dar nu merge; TODO sa fac cu form in edit show
     
         $form->handleRequest($request);
 
@@ -111,19 +94,12 @@ class PinsController extends AbstractController
 
     /**
      * @Route("/pins/{id<[0-9]+>}/delete", name="app_pins_delete", methods={"POST"})
+     * @Security("is_granted('PIN_MANAGE', pin)")
      */
     public function delete(Request $request, Pin $pin, EntityManagerInterface $em): Response {
 
-        if(!$this->getUser()) {
-            $this->addFlash('error', 'You need to be logged id');
-            return $this->redirectToRoute('app_login');
-        }
-
-        if($pin->getUser() != $this->getUser()) {
-            $this->addFlash('error', 'Access denied');
-            return $this->redirectToRoute('app_home');
-        }
-          
+         
+        // also works instead of annotation $this->denyAccessUnlessGranted('PIN_MANAGE', $pin);
         if($this->isCsrfTokenValid('pin_deletion_' . $pin->getId(), $request->request->get('csrf_token') )) { 
             $em->remove($pin);
             $em->flush();
