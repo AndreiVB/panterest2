@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h1>Oops! An error occured</h1>
+            <h2>The server returned a "403 Forbidden"</h2>
+            <p>
+                Something is broken. Please let us know what you were doing when this error occured. We will fix it as soon as possible. Sorry for any inconvenience cause. Go to <a href="{{ path('app_home') }}">homepage</a>.
+            </p>
+        </div>
+    </div>
+    
+{% endblock %}

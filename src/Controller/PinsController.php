@@ -34,6 +34,11 @@ class PinsController extends AbstractController
      */
     // methods={"GET", "POST"} same as line 27
     public function create(Request $request, EntityManagerInterface $em): Response {
+        if(!$this->getUser()) {
+            $this->addFlash('error', 'You need to be logged id');
+            return $this->redirectToRoute('app_login');
+        }
+        
         $pin = new Pin; 
         $form = $this->createForm(PinType::class, $pin);
 
@@ -74,7 +79,16 @@ class PinsController extends AbstractController
      */
     public function edit(Pin $pin, Request $request, EntityManagerInterface $em): Response
     {
-
+        if(!$this->getUser()) {
+            $this->addFlash('error', 'You need to be logged id');
+            return $this->redirectToRoute('app_login');
+        }
+        
+        if($pin->getUser() != $this->getUser()) {
+            $this->addFlash('error', 'Access denied');
+            return $this->redirectToRoute('app_home');
+        }
+        
         $form = $this->createForm(PinType::class, $pin);
         
         //aici baga el al 3-lea param in create form method put, dar nu merge; TODO sa fac cu form in edit show
@@ -99,6 +113,16 @@ class PinsController extends AbstractController
      * @Route("/pins/{id<[0-9]+>}/delete", name="app_pins_delete", methods={"POST"})
      */
     public function delete(Request $request, Pin $pin, EntityManagerInterface $em): Response {
+
+        if(!$this->getUser()) {
+            $this->addFlash('error', 'You need to be logged id');
+            return $this->redirectToRoute('app_login');
+        }
+
+        if($pin->getUser() != $this->getUser()) {
+            $this->addFlash('error', 'Access denied');
+            return $this->redirectToRoute('app_home');
+        }
           
         if($this->isCsrfTokenValid('pin_deletion_' . $pin->getId(), $request->request->get('csrf_token') )) { 
             $em->remove($pin);
