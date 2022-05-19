@@ -11,14 +11,21 @@
     <div class="col-md-4">
       <article class="pin bg-white rounded shadow">
       <div class="mw-100 rounded-top overflow-hidden hover-zoom">
-      <a href="{{ path('app_pins_show', {id: pin.id}) }}">
-        <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/image/placeholder.jpg')) | imagine_filter('square_thumbnail_medium') }}" alt="{{ pin.title}}" class="w-100">
-      </a>   
+        <a href="{{ path('app_pins_show', {id: pin.id}) }}">
+          {# <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('image/placeholder.jpg')) | imagine_filter('square_thumbnail_medium') }}" alt="{{ pin.title}}" class="w-100"/> #}
+
+          {% if pin.imageName %}
+          <img src="{{ vich_uploader_asset(pin) | imagine_filter('square_thumbnail_medium') }}" alt="{{ pin.title}}" class="w-100">
+          {% else %}
+          <img src="{{asset('image/placeholder.jpg') | imagine_filter('square_thumbnail_medium')}}" alt="{{ pin.title}}" class="w-100">
+          {% endif %}
+        </a>   
       </div>
         <div class="p-3">
           <h2 class="h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary">{{ pin.title }}</a></h2>
-        <p class="text-muted"><small>Submitted by {{pin.user.fullName}}</small></p>
-         <p>{{pin.description}}</p>
+          <p class="text-muted"><small>Submitted by {{pin.user.fullName}}</small></p>
+          <p>{{pin.description}}</p>
+          <a href="{{path('app_pins_show', {id: pin.id})}}" class="btn btn-primary btn-sm">Read more</a>
         </div>    
       </article>
     </div>

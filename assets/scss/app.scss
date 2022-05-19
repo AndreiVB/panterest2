@@ -3,10 +3,11 @@
 @import "~bootstrap";
 body {
 	font-family: $primary-font, sans-serif;
+	background-color: $gray-200;
 }
 
-main {
-	background-color: rgb(96, 73, 45);
+#nav-header {
+	background-color: $gray-400;
 }
 
 .alert {
@@ -38,7 +39,7 @@ main {
 }
 
 .pin img {
-	transition: transform 0.5ms ease-out;
+	transition: transform 0.5s ease-in-out;
 	&:hover {
 		transform: scale(1.075);
 	}

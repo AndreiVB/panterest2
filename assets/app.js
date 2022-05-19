@@ -19,3 +19,5 @@ $(".custom-file-input").on("change", function () {
 		.find(".custom-file-label")
 		.html(inputFile.files[0].name);
 });
+
+$(".alert").delay(7000).fadeOut("slow");

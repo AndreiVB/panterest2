@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="row">
-  <div class="col-md-6 mx-auto">
+  <div class="col-md-6 mx-auto my-4">
     <article class="pin bg-white rounded shadow">
       <div class="mw-100 rounded-top overflow-hidden"> 
           <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/image/placeholder.jpg')) | imagine_filter('square_thumbnail_small') }}" alt="{{ pin.title}}" class="w-100"> 
@@ -22,7 +22,7 @@
 
         <p class="pt-3 text-break">{{pin.description}}</p>
         {% if is_granted('PIN_MANAGE', pin) %}
-        <div class="pt-3">
+        <div class="py-3">
           <a href="{{ path('app_pins_edit', {id: pin.id}) }}" class="btn btn-light">Edit</a>
           <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-pin-delete-form').submit();" class="btn btn-light">Delete</a> 
 
@@ -32,6 +32,7 @@
           </form>
         </div>
         {% endif %}
+        <a href="{{path('app_home')}}" class="btn btn-primary btn-sm">Go back</a>
       </div>
 
     </article>
