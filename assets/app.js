@@ -21,3 +21,10 @@ $(".custom-file-input").on("change", function () {
 });
 
 $(".alert").delay(7000).fadeOut("slow");
+
+// $("#btn-logout").onclick(function () {
+// 	$("#btn-logout").click(function () {
+// 		console.log("Click called.");
+// 	});
+// 	$(".js-logout-form").submit();
+// });

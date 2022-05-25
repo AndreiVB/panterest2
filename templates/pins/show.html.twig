@@ -7,7 +7,7 @@
   <div class="col-md-6 mx-auto my-4">
     <article class="pin bg-white rounded shadow">
       <div class="mw-100 rounded-top overflow-hidden"> 
-          <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/image/placeholder.jpg')) | imagine_filter('square_thumbnail_small') }}" alt="{{ pin.title}}" class="w-100"> 
+          <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg')) | imagine_filter('square_thumbnail_big') }}" alt="{{ pin.title}}" class="w-100"> 
       </div>
 
       <div class="p-3">
