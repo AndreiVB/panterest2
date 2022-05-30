@@ -5,28 +5,29 @@
 {% block body %}
 {% if pins|length > 0%}
 <h1 class="mt-5 mb-3 text-center text-muted">{{ pluralize(pins|length, 'Pin') }}</h1>
-{% for row in pins|batch(3) %} 
-  <div class="row mb-5 ">
-    {% for pin in row %} 
-    <div class="col-12 col-md-6 col-lg-4">
+
+  <div class="row mb-5 g-5 justify-content-around justify-content-md-start">
+    {% for pin in pins %} 
+    <div class="col-10 col-sm-9 col-md-6 col-lg-4">
       <article class="pin bg-white rounded shadow">
       <div class="mw-100 rounded-top overflow-hidden hover-zoom">
         <a href="{{ path('app_pins_show', {id: pin.id}) }}">       
-          <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg')) | imagine_filter('square_thumbnail_medium') }} " alt="{{ pin.title }}" class="w-100 h-100"/>  
+          <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder2.jpg')) | imagine_filter('square_thumbnail_medium') }} " alt="{{ pin.title }}" class="w-100 h-100"/>  
         </a>   
       </div>
         <div class="p-3">
-          <h2 class="h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary">{{ pin.title }}</a></h2>
+          <h2 class="h4"><a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-decoration-none  text-secondary text-truncate d-block">{{ pin.title}}</a></h2>
+                
+          <p class="text-muted text-truncate"><small>Submitted by {{pin.user.fullName}}</small></p>
+          <p class="text-truncate">{{pin.description}}</p>
           
-          <p class="text-muted"><small>Submitted by {{pin.user.fullName}}</small></p>
-          <p>{{pin.description}}</p>
           <a href="{{path('app_pins_show', {id: pin.id})}}" class="btn btn-primary btn-sm">Read more</a>
         </div>    
       </article>
     </div>
     {% endfor %}
   </div>
-  {% endfor %}
+  
 {% else %}
   <p class="h2 mt-5 text-center text-muted">No pins yet.<a href="{{path('app_pins_create')}}" class="d-block text-decoration-none"> Make one and be the first!</a></p>
 {% endif %}

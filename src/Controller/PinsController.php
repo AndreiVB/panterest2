@@ -79,6 +79,7 @@ class PinsController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) { 
+        $pin->setUpdatedAt(new \DateTimeImmutable);
         $em->flush();
 
          $this->addFlash('succes', 'Pin succesfully edited ');
