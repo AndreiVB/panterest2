@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Form\UserFormType;
 use App\Form\ChangePasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,6 +25,7 @@ class AccountController extends AbstractController
 
         return $this->render('account/show.html.twig');
     }
+
     /**
      * @Route("/edit", name="app_account_edit", methods={"GET", "POST"})
      * @IsGranted("IS_AUTHENTICATED_FULLY")
@@ -37,6 +37,7 @@ class AccountController extends AbstractController
         $form = $this->createForm(UserFormType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+            $user->setUpdatedAt(new \DateTimeImmutable);
             $em->flush();
             $this->addFlash('succes', 'Account updated with succes');
             return $this->redirectToRoute('app_account');
@@ -60,7 +61,6 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($passwordEncoder->hashPassword($user, $form['plainPassword']->getData()));
-            
             $em->flush();
             $this->addFlash('succes', 'Password updated with succes'); 
             return $this->redirectToRoute('app_account');

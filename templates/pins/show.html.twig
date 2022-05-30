@@ -23,8 +23,8 @@
         <p class="pt-3 text-break">{{pin.description}}</p>
         {% if is_granted('PIN_MANAGE', pin) %}
         <div class="py-3">
-          <a href="{{ path('app_pins_edit', {id: pin.id}) }}" class="btn btn-light mx-1">Edit</a>
-          <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-pin-delete-form').submit();" class="btn btn-light mx-1">Delete</a> 
+          <a href="{{ path('app_pins_edit', {id: pin.id}) }}" class="btn btn-secondary mx-1">Edit</a>
+          <a href="#" onclick="event.preventDefault(); confirm('Are you sure?') && document.getElementById('js-pin-delete-form').submit();" class="btn btn-secondary mx-1">Delete</a> 
 
           <form id="js-pin-delete-form" action="{{ path('app_pins_delete', {id: pin.id}) }}" method="POST" style="display:none;">
             <input type="hidden" name="csrf_token" value="{{ csrf_token('pin_deletion_' ~ pin.id) }}">
@@ -32,7 +32,7 @@
           </form>
         </div>
         {% endif %}
-        <a href="{{path('app_home')}}" class="btn btn-primary btn-sm">Go back</a>
+        <a href="{{path('app_home')}}" class="btn btn-primary mx-1">Go back</a>
       </div>
 
     </article>
