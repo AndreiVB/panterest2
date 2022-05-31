@@ -21,6 +21,10 @@
 		"watch": "encore dev --watch",
 		"build": "encore production --progress"
 	},
+	"engines": {
+		"node": "v14.16.*",
+		"npm": "6.14.*"
+	},
 	"dependencies": {
 		"node-sass": "^7.0.1"
 	}
