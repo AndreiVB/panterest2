@@ -1,9 +1,5 @@
 doctrine:
   dbal:
-    dbal:
-    # configure these for your database server
-    driver: "pdo_mysql"
-    server_version: "5.6"
     url: "%env(resolve:DATABASE_URL)%"
 
     # IMPORTANT: You MUST configure your server version,
