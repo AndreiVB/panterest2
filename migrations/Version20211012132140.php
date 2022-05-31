@@ -14,7 +14,7 @@ final class Version20211012132140 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'added timestamps from trait timestampable';
     }
 
     public function up(Schema $schema): void
