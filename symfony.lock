@@ -1,4 +1,10 @@
 {
+    "async-aws/core": {
+        "version": "1.15.0"
+    },
+    "async-aws/ses": {
+        "version": "1.4.1"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.4"
     },
@@ -87,6 +93,9 @@
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
+    },
+    "imagine/imagine": {
+        "version": "1.3.2"
     },
     "jms/metadata": {
         "version": "2.6.1"

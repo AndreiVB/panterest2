@@ -5,9 +5,10 @@
 	"prefer-stable": true,
 	"require": {
 		"php": ">=7.2.5",
-		"ext-gd": "*",
 		"ext-ctype": "*",
+		"ext-gd": "*",
 		"ext-iconv": "*",
+		"async-aws/ses": "^1.4",
 		"composer/package-versions-deprecated": "1.11.99.4",
 		"doctrine/annotations": "^1.0",
 		"doctrine/doctrine-bundle": "^2.4",
