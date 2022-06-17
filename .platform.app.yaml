@@ -1,0 +1,48 @@
+name: app
+
+type: php:7.4
+
+runtime:
+    extensions:
+        - apcu
+        - mbstring
+        - sodium
+        - gd
+        - ctype
+        - iconv
+        
+
+#variables:
+#    php:
+#        # uncomment on PHP 7.4+
+#        #opcache.preload: /app/config/preload.php
+
+build:
+    flavor: none
+
+disk: 512
+
+web:
+    locations:
+        "/":
+            root: "public"
+            expires: 1h
+            passthru: "/index.php"
+
+
+
+mounts:
+    "/var": { source: local, source_path: var }
+
+hooks:
+    build: |
+        set -x -e
+
+        curl -fs https://get.symfony.com/cloud/configurator | bash
+        
+        symfony-build
+
+    deploy: |
+        set -x -e
+
+        symfony-deploy
